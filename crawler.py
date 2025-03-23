@@ -33,6 +33,7 @@ def check_assignments():
 
     driver = webdriver.Chrome(options=options)
 
+    print("시작")
 
     '''
     1. 학교 홈페이지 로그인
@@ -98,7 +99,7 @@ def check_assignments():
 
     # 4. iframe 안에서 원하는 요소 크롤링
     soup = BeautifulSoup(driver.page_source, "html.parser")
-    print("soup 객체 가져옴"+soup)
+    print(soup)
 
     course_container = soup.find_all( attrs={'class':'xn-student-course-container'} )
 
@@ -164,5 +165,5 @@ def check_assignments():
 
     driver.quit()
 
-    print("crawler result"+result)
+    print(result)
     return result
