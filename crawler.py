@@ -99,10 +99,10 @@ def check_assignments():
 
     # 4. iframe 안에서 원하는 요소 크롤링
     soup = BeautifulSoup(driver.page_source, "html.parser")
-    print(soup)
+    #print(soup)
 
     course_container = soup.find_all( attrs={'class':'xn-student-course-container'} )
-
+    print(course_container)
 
     '''
     3. 크롤링해온 요소에서 필요한 부분 추출하여 result 생성
