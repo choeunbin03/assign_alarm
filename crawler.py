@@ -20,7 +20,9 @@ import os
 
 def check_assignments():
     options = Options()
-    options.add_argument('headless') #headless모드 브라우저가 뜨지 않고 실행됩니다.
+    options.add_argument('--headless') #headless모드 브라우저가 뜨지 않고 실행됩니다.
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_experimental_option("detach", True)
     options.add_argument('--start-maximized')
     #options.add_argument("--disable-blink-features=AutomationControlled")
