@@ -102,7 +102,7 @@ def check_assignments():
     #print(soup)
 
     course_container = soup.find_all( attrs={'class':'xn-student-course-container'} )
-    print(course_container)
+    #print(course_container)
 
     '''
     3. 크롤링해온 요소에서 필요한 부분 추출하여 result 생성
@@ -128,7 +128,7 @@ def check_assignments():
         # 과목 이름
         course_title_tag = element.find("p", class_="xnscc-header-title")
         course_title = course_title_tag.text.strip() if course_title_tag else "없음"
-
+        print(course_title)
         todos = []
         # 각각의 todo divs
         todo_count_divs = element.find_all("div", class_="xn-todo-count")
@@ -151,6 +151,7 @@ def check_assignments():
             if(todo_count != 1):
                 continue
             
+            print("todo에 추가됨")
             todos.append({
                 "todo_title": todo_title,
                 "todo_count": todo_count
