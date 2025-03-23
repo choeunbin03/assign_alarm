@@ -40,6 +40,7 @@ def check_assignments():
     #학교 LMS 로그인 페이지 접속
     #############   debug_check_point_00. 학교 홈페이지 접속 불가(ip 차단)   ###########
     driver.get("https://lms.ssu.ac.kr/login")
+    print("학교 로그인 페이지 접속")
     time.sleep(random.uniform(2,4))
 
 
@@ -70,6 +71,7 @@ def check_assignments():
     # 3-1. 로그인 버튼은 <a> 태그로 되어 있으며, 클래스가 "btn_login" 입니다.
     login_button = driver.find_element(By.CSS_SELECTOR, "a.btn_login")
     login_button.click()
+    print("로그인 ok")
 
     # # 로그인 버튼 클릭
     # # 3-2. 버튼이 <a> 태그로 되어 있어, 자바스크립트 실행해야 할 가능성이 있음.
@@ -84,6 +86,7 @@ def check_assignments():
 
     # 마이페이지 이동
     driver.get("https://lms.ssu.ac.kr/mypage")
+    print("마이페이지 이동")
     time.sleep(random.uniform(8,11))
 
     # 내가 원하는 정보가 iframe 안에 있음
@@ -95,6 +98,7 @@ def check_assignments():
 
     # 4. iframe 안에서 원하는 요소 크롤링
     soup = BeautifulSoup(driver.page_source, "html.parser")
+    print("soup 객체 가져옴"+soup)
 
     course_container = soup.find_all( attrs={'class':'xn-student-course-container'} )
 
@@ -160,5 +164,5 @@ def check_assignments():
 
     driver.quit()
 
-    print(result)
+    print("crawler result"+result)
     return result
