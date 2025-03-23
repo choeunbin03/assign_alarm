@@ -135,32 +135,43 @@ def check_assignments():
 
         for div in todo_count_divs:        
             #내가 확인할 todo title
-            requirements = ["동영상", "과제", "퀴즈"]
+            #requirements = ["동영상", "과제", "퀴즈"]
+            '''
+            render에 올렸는데 Region이 싱가포르라 requirements에 영어로 뜸.
+            '''
+            requirements = ["Videos", "Assignments", "Quizzes"]
+
+            # todo_title에 한글로 넣고싶음..
+            title_translate = {
+                "Videos": "동영상",
+                "Assignments": "과제",
+                "Quizzes": "퀴즈"
+            }
             
             # todo title
             todo_title_tag = div.find("span", class_="xntc-title")
             #############   debug_check_point_01. todo title이 "없음"일 경우 코드 수정 필요(스크래핑 과정에서의 문제)   ###########
             todo_title = todo_title_tag.text.strip() if todo_title_tag else "없음"
-            print(f"📌todo_title: {todo_title}")
+            #print(f"📌todo_title: {todo_title}")
             if(todo_title not in requirements):
-                print("⛔ 조건 불만족: 요구사항에 없는 항목")
+                #print("⛔ 조건 불만족: 요구사항에 없는 항목")
                 continue
 
             # todo count
             todo_count_tag = div.find("a", class_="xntc-count")
-            if todo_count_tag:
-                print(f" 📥 todo_count raw: {todo_count_tag.text.strip()}")
-            else:
-                print(" ❌ todo_count_tag 없음")
+            # if todo_count_tag:
+            #     print(f" 📥 todo_count raw: {todo_count_tag.text.strip()}")
+            # else:
+            #     print(" ❌ todo_count_tag 없음")
             #############   debug_check_point_02. todo count가 -1일 경우 코드 수정 필요(스크래핑 과정에서의 문제)   ###########
             todo_count = int(todo_count_tag.text.strip()) if todo_count_tag and todo_count_tag.text.strip().isdigit() else -1
             if(todo_count != 1):
-                print(" ⚠️ todo_count 조건 불만족 (todo_count != 1)")
+                #print(" ⚠️ todo_count 조건 불만족 (todo_count != 1)")
                 continue
             
             print("todo에 추가됨")
             todos.append({
-                "todo_title": todo_title,
+                "todo_title": title_translate.get(todo_title, todo_title),
                 "todo_count": todo_count
             })
         if todos:
