@@ -1,0 +1,19 @@
+services:
+  - type: cron
+    name: assign-alarm
+    schedule: '0 0 * * *' # UTC 0시 = 한국 오전 9시
+    plan: free
+    env: python
+    buildCommand: 'pip install -r requirements.txt'
+    startCommand: 'python main.py'
+    envVars:
+      - key: SSU_ID
+        fromEnvVar: SSU_ID
+      - key: SSU_PW
+        fromEnvVar: SSU_PW
+      - key: SLACK_APP_TOKEN
+        fromEnvVar: SLACK_APP_TOKEN
+      - key: SLACK_BOT_TOKEN
+        fromEnvVar: SLACK_BOT_TOKEN
+      - key: SLACK_SIGNING_SECRET
+        fromEnvVar: SLACK_SIGNING_SECRET
